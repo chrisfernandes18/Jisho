@@ -4,7 +4,7 @@ import bs4, requests
 SUCCESS = 1
 FAILURE = 0
 
-def get_user_input():
+def get_user_input(flag):
     """
     Returns a string containing user provided movie/tv title
 
@@ -20,7 +20,7 @@ def get_user_input():
         User input
 
     """
-    if len(sys.argv) > 1:
+    if (len(sys.argv) > 1) and (flag == 0):
         return " ".join(sys.argv[1:])
     else:
         return input("Enter the japanese word you would like to look for: ")
@@ -148,3 +148,26 @@ def kanji(soup):
         result_num += 1
     
     return kanji
+
+def search_again():
+    """
+    Asks if user wants to search again.
+
+    Parameters
+    ----------
+    None
+    
+    Returns
+    -------
+    words : dict
+        Dictionary of each word and the words information.
+    """
+    answer = input("\nWould you like to search another word (Y/N)? ")
+    answer = answer.lower()
+    if (answer == 'y'):
+        answer = get_user_input(1)
+        search_jisho(answer)
+        return SUCCESS
+    else:
+        print("Exiting...")
+        return FAILURE
