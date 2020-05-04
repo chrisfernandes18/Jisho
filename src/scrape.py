@@ -159,8 +159,9 @@ def search_again():
     
     Returns
     -------
-    words : dict
-        Dictionary of each word and the words information.
+    SUCCESS | FAILURE : int
+        SUCCESS if one does want to search again or
+        FAILURE if one does not want to search again.
     """
     answer = input("\nWould you like to search another word (Y/N)? ")
     answer = answer.lower()
