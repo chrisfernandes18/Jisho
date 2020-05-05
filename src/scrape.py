@@ -25,6 +25,7 @@ def get_user_input(flag):
     else:
         return input("Enter the japanese word you would like to look for: ")
 
+
 def get_soup(link):
     """
     Gets the HTML for a link. Throws error if it does not connect to website.
@@ -75,11 +76,12 @@ def search_jisho(word):
             for item in words_dict[key]:
                 print(item)
         # Kanji with onyomi and kunyomi
-        print("\nKanji" + search_results[1].text)
-        kanji_dict = kanji(search_soup)
-        for key in kanji_dict:
-            for item in kanji_dict[key]:
-                print(item[1])
+        if len(search_results) > 1:
+            print("\nKanji" + search_results[1].text)
+            kanji_dict = kanji(search_soup)
+            for key in kanji_dict:
+                for item in kanji_dict[key]:
+                    print(item[1])
         return SUCCESS
     else:
         return FAILURE
@@ -113,6 +115,7 @@ def words(soup):
         result_num += 1
     
     return words
+
 
 def kanji(soup):
     """
@@ -148,6 +151,7 @@ def kanji(soup):
         result_num += 1
     
     return kanji
+
 
 def search_again():
     """
